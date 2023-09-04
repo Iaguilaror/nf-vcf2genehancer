@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 /* Define the main processes */
 process summary {
 
-	publishDir "${params.results_dir}/02-variant-summary-tsv/", mode:"copyNoFollow"
+	publishDir "${params.results_dir}/03-variant-summary-tsv/", mode:"copyNoFollow"
 
   input:
     path TSV
