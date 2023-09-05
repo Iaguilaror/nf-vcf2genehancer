@@ -25,6 +25,7 @@ _01a_gff2bed
 Core-processing:
 _002_bedtools-intersect
 _003_variant-summary-tsv
+_004_gene-summary-tsv
 
 Pos-processing
 
@@ -108,6 +109,7 @@ params.intermediates_dir =  "${params.output_dir}/${params.pipeline_name}-interm
 include { GFF2BED }             from  './modules/01a-gff2bed'
 include { BEDTOOLS_INTERSECT }  from  './modules/02-bedtools-intersect'
 include { SUMMARY }             from  './modules/03-variant-summary-tsv'
+include { GENE_SUMMARY }        from  './modules/04-gene-summary-tsv'
 
 include { RECORDCONFIG }      from  './modules/Z-recordconfigs'
 
@@ -116,6 +118,7 @@ include { RECORDCONFIG }      from  './modules/Z-recordconfigs'
 
 scripts_gff2bed           = Channel.fromPath( "./scripts/01a-gff2bed.R" )
 scripts_summary_variants  = Channel.fromPath( "./scripts/03-summary.R" )
+scripts_summary_genes     = Channel.fromPath( "./scripts/04-summary-genes.R" )
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -130,21 +133,11 @@ scripts_summary_variants  = Channel.fromPath( "./scripts/03-summary.R" )
 
 workflow {
 
-  SUMMARY( ( GFF2BED ( scripts_gff2bed ) | BEDTOOLS_INTERSECT ), scripts_summary_variants )
+  bed_custom        = GFF2BED ( scripts_gff2bed )
 
-  // all_validations = VALIDATE_SSHKEY ()
-  // all_processes = NUMBER_PROCESSES ( all_validations, scripts_number_processes )
-  // all_oldest = OLDEST_CONNECTION ( all_processes, scripts_oldest_connection )
-  // all_avg = LOAD_AVG ( all_oldest, scripts_load_avg )
-  // all_mem = MEMLOAD ( all_avg, scripts_memload )
-  // all_diskroot = DISKROOT ( all_mem, scripts_diskroot )
-  // all_zpools = ZPOOLS ( all_diskroot, scripts_zpools )
-  // all_topdisk = TOPDISK ( all_zpools, scripts_topdisk )
-  // all_temp = MAXTEMP ( all_topdisk, scripts_maxtemp )
-  // all_users = GETUSERS ( all_temp, scripts_getusers )
-  // all_groups = GETGROUPS ( all_users, scripts_getgroups )
-  // all_data = STORCLI( all_groups )
-  // ANALYZER ( all_data, scripts_analyzer )
+  variants_summary  = SUMMARY( bed_custom | BEDTOOLS_INTERSECT, scripts_summary_variants )
+
+  GENE_SUMMARY ( variants_summary, bed_custom, scripts_summary_genes )
 
   /* declare input channel for recording configs */
   nfconfig = Channel.fromPath( "./nextflow.config" )
