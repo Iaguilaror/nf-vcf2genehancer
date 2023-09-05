@@ -31,13 +31,13 @@ process get_snps {
         path VCF
 
     output:
-        path "*.snps.vcf", emit: get_snps_results
+        path "*.snps.vcf.gz", emit: get_snps_results
 
   script:
   """
   # find vcf name
   the_vcf=\$( basename $VCF .vcf)
-  bcftools view --type snps $VCF > \$the_vcf".snps.vcf"
+  bcftools view --type snps $VCF | bgzip > \$the_vcf".snps.vcf.gz"
   """
 
 }
@@ -50,13 +50,13 @@ process get_indels {
         path VCF
 
     output:
-        path "*.indels.vcf", emit: get_indels_results
+        path "*.indels.vcf.gz", emit: get_indels_results
 
   script:
   """
   # find vcf name
   the_vcf=\$( basename $VCF .vcf)
-  bcftools view --type indels $VCF > \$the_vcf".indels.vcf"
+  bcftools view --type indels $VCF | bgzip > \$the_vcf".indels.vcf.gz"
   """
 
 }

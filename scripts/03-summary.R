@@ -75,7 +75,8 @@ simple_data_3 <- bind_cols( variant_info, collapsed_gene_info ) %>%
   relocate( n_connected_genes, .before = connected_genes ) %>% 
   mutate( gh_length = gh_end - gh_start, .before = 1 ) %>% 
   relocate( n_connected_genes, n_variants, .before = gh_length ) %>% 
-  mutate( var_per_kb = n_variants / gh_length * 1000, .after = n_variants )
+  mutate( var_per_kb = n_variants / gh_length * 1000, .after = n_variants ) %>% 
+  arrange( -var_per_kb )
 
 # save the table
 write.table( x = simple_data_3, file = ofile,
