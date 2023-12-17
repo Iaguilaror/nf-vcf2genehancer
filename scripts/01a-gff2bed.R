@@ -3,12 +3,15 @@ library( "vroom" )
 library( "dplyr" )
 library( "stringr" )
 
+# disable scipen to avoid bug on bedtools intersect
+options( scipen = 666 )
+
 # Read args from command line
 args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
 ## Comment for production mode only
-# args[1] <- "sample.gff" ## OR "test/data/sample.gff"
+# args[1] <- "test/reference/GeneHancer_v5.17.gff" ## OR "test/data/sample.gff"
 
 # put a name to args
 ifile <- args[1]
