@@ -1,4 +1,4 @@
-''DISCLAIMER: this readme was created with AI, and it covers the general aspects of the module. If you require more specifics, please raise an issue in the github repository.  ''
+*DISCLAIMER: this readme was created with AI, and it covers the general aspects of the module. If you require more specifics, please raise an issue in the github repository.  
 
 # 01a-gff2bed: GFF3 to BED Conversion Module
 
