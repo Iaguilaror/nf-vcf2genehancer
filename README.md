@@ -64,7 +64,7 @@ git clone git@github.com:Iaguilaror/nf-vcf2genehancer.git
 
 1. To test pipeline execution using test data, run:  
 ```
-./runtest.sh
+bash runtest.sh
 ```
 
 2. Your console should print the Nextflow log for the run, once every process has been submitted, the following message will appear:  
@@ -80,7 +80,7 @@ git clone git@github.com:Iaguilaror/nf-vcf2genehancer.git
 ```
 ---
 
-## Testing the pipeline:
+## Using the pipeline:
 
 To run the pipeline execute:
 ```
