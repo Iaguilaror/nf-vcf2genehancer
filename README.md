@@ -153,7 +153,10 @@ lnc-GGTLC2-2    33.8983050847458        2       59      1       1       GH22J022
 ## REPLICATE our analysis:
 
 * SETUP  
-**Make sure you have downloaded the Genehancer GFF file and save it as ./real-data/GH_v5.17/GeneHancer_v5.17.gff**
+**Make sure you have downloaded the Genehancer GFF file and save it as**  
+  ```
+  ./real-data/GH_v5.17/GeneHancer_v5.17.gff
+  ```
 
 To get the summary of variants in Genehancer reported in our [paper](https://doi.org/10.1093/gbe/evaf043) you need to execute each of the launcher scripts in ./launchers/ like this: ` bash launchers/central.sh `
 
