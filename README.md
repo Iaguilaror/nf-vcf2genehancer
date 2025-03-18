@@ -180,7 +180,7 @@ launchers/
  
 ---
 ### References
-Under the hood Proteomic compare uses some coding tools, please include the following ciations in your work:
+Under the hood this pipeline uses some coding tools, please include the following ciations in your work:
 
 * [Fishilevich S, Nudel R, Rappaport N, Hadar R, Plaschkes I, Iny Stein T, et al. GeneHancer: genome-wide integration of enhancers and target genes in GeneCards. Database (Oxford). 2017;2017.](https://doi.org/10.1093/database/bax028)
 
