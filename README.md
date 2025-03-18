@@ -159,7 +159,7 @@ lnc-GGTLC2-2    33.8983050847458        2       59      1       1       GH22J022
 ## REPLICATE our analysis:
 
 * SETUP  
-**Make sure you have downloaded the Genehancer GFF file and save it as**  
+**Make sure you have [downloaded the Genehancer GFF file](https://www.genecards.org/Guide/Datasets) and save it as**  
   ```
   ./real-data/GH_v5.17/GeneHancer_v5.17.gff
   ```
