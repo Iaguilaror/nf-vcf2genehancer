@@ -112,6 +112,28 @@ Inside the directory test/results/nf-vcf2genehancer-results/ you can find the fo
 1) 03-variant-summary-tsv/*.genehancer_variants_summary.tsv   # tab separated file with a summary of the affected Genehancer, the list of affected genes, and other values.
 2) 04-gene-summary-tsv/*.gene_summary.tsv                     # tab separated file with coordinates of the affected Genehancer and the variant affecting it, by row.
 ````
+- **TSV File**: *.genehancer_variants_summary.tsv tab separated file with a summary of the affected Genehancer, the list of affected genes, and other values.
+
+Example contents  
+```
+n_connected_genes       n_variants      var_per_kb      gh_length       gh_chr  gh_start        gh_end  gh_feature_name GHid    connected_genes all_variants
+6       2       64.5161290322581        31      chr22   27617961        27617992        Enhancer        GH22J027617     MN1;ENSG00000224027;piR-43106-224;HSALNG0147387;lnc-MN1-12;CRYBB1        chr22-27617987-TAG-T;chr22-27617989-G-T,GTTTTTTT
+6       6       40.2684563758389        149     chr22   19873598        19873747        Enhancer        GH22J019873     TXNRD2;RPL8P5;HSALNG0134066;lnc-TBX1-2;GNB1L;LOC124905081        chr22-19873604-T-C;chr22-19873634-A-G;chr22-19873638-C-T;chr22-19873646-G-C;chr22-19873676-G-T;chr22-19873703-T-C
+...
+
+```
+- **TSV File**: *.gene_summary.tsv tab separated file with a summary of the affected Genes, the list of affected Genehancer ids (GHids), and other values.
+
+Example contents  
+```
+connected_genes var_per_regulatory_kb   n_variants_gene total_regulatory_size   n_affected_GHid n_GHids all_GHids       affected_GHids  all_variants
+RF00952-013     33.8983050847458        2       59      1       1       GH22J022664     GH22J022664     chr22-22664404-A-G;chr22-22664437-A-G
+lnc-GGTLC2-2    33.8983050847458        2       59      1       1       GH22J022664     GH22J022664     chr22-22664404-A-G;chr22-22664437-A-G
+...
+
+```
+
+
 ---
 
 ### module directory structure
