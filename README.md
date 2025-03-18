@@ -14,6 +14,7 @@ The pipeline takes as INPUT a VCF file, and GFF file with the GeneHancer databas
 ### Features
   **-v 0.0.1**
 
+* The Genehancer gff file must be previously downloaded from [https://www.genecards.org/Guide/Datasets](https://www.genecards.org/Guide/Datasets)
 * Supports VCF ##fileformat=VCFv4.2
 * Results include TSV files summarizing variation
 * Scalability and reproducibility via a Nextflow-based framework   
@@ -107,9 +108,10 @@ chr22   GeneHancer      Promoter/Enhancer       46589987        46595001        
 
 Inside the directory test/results/nf-vcf2genehancer-results/ you can find the following:
 
+````
 1) 03-variant-summary-tsv/*.genehancer_variants_summary.tsv   # tab separated file with a summary of the affected Genehancer, the list of affected genes, and other values.
 2) 04-gene-summary-tsv/*.gene_summary.tsv                     # tab separated file with coordinates of the affected Genehancer and the variant affecting it, by row.
-
+````
 ---
 
 ### module directory structure
