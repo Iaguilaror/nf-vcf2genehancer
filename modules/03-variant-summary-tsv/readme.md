@@ -1,44 +1,86 @@
-*DISCLAIMER: this readme was created with AI, and it covers the general aspects of the module. If you require more specifics, please raise an issue in the github repository.  
-  
-# 03-variant-summary-tsv: Variant Summary Generation Module
+# 03-variant-summary-tsv: Variant Summary associated with GeneHancer regions module
 
-## Module Overview
+**Author(s):**
 
-The `03-variant-summary-tsv` module in the `nf-vcf2genehancer` pipeline is designed to generate a summary of genetic variants from VCF files. This summary provides essential insights into the variants, facilitating downstream analyses and interpretations.
+* Israel Aguilar-Ordoñez (iaguilaror@gmail.com)
 
-## Key Components
+**Date:** March 2025  
 
-- **`main.nf`**: The primary Nextflow script orchestrating the variant summarization process.
-- **`scripts/`**: Directory containing auxiliary scripts utilized during the summarization.
-- **`test/`**: Directory with test data or scripts to validate the module's functionality.
+---
 
-## Summarization Process
+## Module description:  
 
-This module processes VCF files to extract pertinent information about genetic variants. The process involves:
+A (DSL2) Nextflow module to summarize the information by aggregating variants and extracting gene connectivity details.
 
-1. Reading input VCF files containing variant data.
-2. Extracting relevant variant information such as chromosome, position, reference and alternate alleles, quality scores, and annotations.
-3. Compiling the extracted data into a structured TSV (Tab-Separated Values) format for easy interpretation and downstream analysis.
+## Module Dependencies:
+| Requirement | Version  | Required Commands |
+|:---------:|:--------:|:-------------------:|
+| [Nextflow](https://www.nextflow.io/docs/latest/getstarted.html) | 22.10.4 | nextflow |
+| [R](https://www.r-project.org/) | 4.4.3 | Rscript |
 
-## Inputs
+# R packages required:
 
-- **VCF File**: A file containing variant calls in VCF format.
+```
+tidyr version: 1.3.1
+dplyr version: 1.1.4
+vroom version: 1.6.5
+stringr version: 1.5.1
+```
 
-## Outputs
+### Input(s):
 
-- **TSV File**: A tab-separated file summarizing the variants, including details like chromosome, position, reference and alternate alleles, quality scores, and annotations.
+- **TSV File**: *.genehancer_variants.tsv tab separated file with coordinates of the affeted Genehancer and the variant affecting it, by row.
 
-## Usage
+Example contents  
+```
+chr22   46589987        46595001        Promoter/Enhancer;GH22J046589;connected_gene=GRAMD4;score=12.78;connected_gene=TBC1D22A;score=4.32;connected_gene=CERK;score=2.47;connected_gene=MK280393;score=0.45;connected_gene=AB372664-001;score=0.41;connected_gene=lnc-CDPF1-1;score=0.16;connected_gene=RF00017-3912;score=0.05  chr22   46590020        G       A
+...
 
-To use this module within the `nf-vcf2genehancer` pipeline, specify your VCF file in the pipeline parameters. The module will process the VCF file to generate a summary TSV file in the specified output directory.
+```
 
-## Dependencies
+### Outputs
 
-Ensure that all necessary dependencies and environment configurations are met for the successful execution of this module.
+- **TSV File**: *.genehancer_variants_summary.tsv tab separated file with a summary of the affected Genehancer, the list of affected genes, and other values.
 
-## Example Command
+Example contents  
+```
+n_connected_genes       n_variants      var_per_kb      gh_length       gh_chr  gh_start        gh_end  gh_feature_name GHid    connected_genes all_variants
+6       2       64.5161290322581        31      chr22   27617961        27617992        Enhancer        GH22J027617     MN1;ENSG00000224027;piR-43106-224;HSALNG0147387;lnc-MN1-12;CRYBB1        chr22-27617987-TAG-T;chr22-27617989-G-T,GTTTTTTT
+6       6       40.2684563758389        149     chr22   19873598        19873747        Enhancer        GH22J019873     TXNRD2;RPL8P5;HSALNG0134066;lnc-TBX1-2;GNB1L;LOC124905081        chr22-19873604-T-C;chr22-19873634-A-G;chr22-19873638-C-T;chr22-19873646-G-C;chr22-19873676-G-T;chr22-19873703-T-C
+...
 
-This module is executed as part of the Nextflow pipeline. Ensure your `nextflow.config` is correctly set up to provide the required input files.
+```
 
-```bash
-nextflow run nf-vcf2genehancer -entry variant_summary_tsv --vcf input.vcf --outdir results/
+## Module parameters:
+
+NONE  
+
+## Testing the module:
+
+* Estimated test time:  **1 minute(s)**  
+
+1. Test this module locally by running,
+```
+bash testmodule.sh
+```
+
+2.`[>>>] Module Test Successful` should be printed in the console.  
+
+## module directory structure
+
+````
+03-variant-summary-tsv/          
+├── main.nf                     ## Nextflow script with the main process. To be imported by the full pipeline 
+├── readme.md                   ## This document
+├── test                        ## Directory with materials for test
+│   ├── data
+│   │   └──  *.genehancer_variants.tsv ## file with coordinates of the affeted Genehancer + variant.
+│   └── results                 ## This dir will be created after runing the test
+├── testmodule.nf               ## A quick Nextflow script to run in a controled environment.
+└── testmodule.sh               ## A quick bash script to run the whole test
+````
+
+## References
+* NONE
+
+*DISCLAIMER: this readme was partially created with AI, and it covers the general aspects of the module. If you require more specifics, please raise an issue in the github repository.  
