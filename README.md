@@ -80,10 +80,16 @@ git clone git@github.com:Iaguilaror/nf-vcf2genehancer.git
 ```
 ---
 
+## Testing the pipeline:
+
+To run the pipeline execute:
+```
+nextflow run main.nf --input_vcf <PATH to your VCF> --input_gff "PATH to Genehancer GFF" --output_dir	<PATH to save the results>
+```
 
 ### Pipeline Inputs
 
-- **VCF File**: Variant file file in VCF format. The only required fields are #CHROM  POS (probably also REF     ALT but needs testing)
+- --input_vcf **VCF File**: Variant file file in VCF format. The only required fields are #CHROM  POS (probably also REF     ALT but needs testing)
 
 Example contents  
 ```
@@ -94,7 +100,7 @@ chr22   10515072        .       AAAG    A       .       .       .
 
 ```
 
-- **GFF3 File**: A genomic annotation file in GFF3 format.
+- --input_gff **GFF3 File**: A genomic annotation file in GFF3 format.
 
 Example contents  
 ```
