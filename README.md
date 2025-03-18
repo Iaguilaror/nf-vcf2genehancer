@@ -42,10 +42,10 @@ The pipeline takes as INPUT a VCF file, and GFF file with the GeneHancer databas
 #### R packages required:
 
 ```
-dplyr version: 1.1.4
-vroom version: 1.6.5
-stringr version: 1.5.1
-tidyr version: 1.3.1
+dplyr version: >= 1.1.4
+vroom version: >= 1.6.5
+stringr version: >= 1.5.1
+tidyr version: >= 1.3.1
 ```
 
 ---
@@ -58,7 +58,7 @@ git clone git@github.com:Iaguilaror/nf-vcf2genehancer.git
 
 ---
 
-## Replicate our analysis (Testing the pipeline):
+## Testing the pipeline:
 
 * Estimated test time:  **3 minute(s)**  
 
@@ -150,7 +150,20 @@ lnc-GGTLC2-2    33.8983050847458        2       59      1       1       GH22J022
     └── reference  # sample survey data completion to test this pipeline
 
 ````
+## Replicate our analysis (Testing the pipeline):
 
+* SETUP
+**Make sure you have downloaded the Genehancer GFF file and save it as ./real-data/GH_v5.17/GeneHancer_v5.17.gff**
+
+To get the summary of variants in Genehancer reported in our [paper](https://doi.org/10.1093/gbe/evaf043) you need to execute each of the launcher scripts in ./launchers/ like this: ` bash launchers/central.sh `
+
+````
+launchers/
+├── central.sh         
+├── north.sh        
+└── south.sh
+````
+ 
 ---
 ### References
 Under the hood Proteomic compare uses some coding tools, please include the following ciations in your work:
