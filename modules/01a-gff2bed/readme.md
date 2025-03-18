@@ -68,8 +68,8 @@ bash testmodule.sh
 ## module directory structure
 
 ````
-01a-gff2bed/                    ## Nextflow script with the main process. To be imported by the full pipeline 
-├── main.nf
+01a-gff2bed/
+├── main.nf                     ## Nextflow script with the main process. To be imported by the full pipeline 
 ├── readme.md                   ## This document
 ├── scripts -> ../../scripts    ## Directory with scripts and binaries to run this module
 ├── test                        ## Directory with materials for test
